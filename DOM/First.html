@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Document</title>
+</head>
+<body style="background-color: rgb(16, 15, 15);">
+    
+</body>
+<script>
+    const value = document.createElement("div");
+    console.log(value);
+    value.className = "main"
+    value.id = "myId"
+    value.setAttribute("title" , "granted")
+    value.style.backgroundColor = "aqua"
+    value.style.padding = "40px"
+    value.style.fontSize = "120px"
+    
+    const addValue = document.createTextNode('chai aur code')
+    value.appendChild(addValue)
+    document.body.appendChild(value)
+    
+
+    </script>
+</html>

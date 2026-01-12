@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: rgb(16, 15, 15); color:antiquewhite ">
+    <ul class="language">
+        <li>
+            JavaScript
+        </li>
+    </ul>
+</body>
+<script>
+    function addLang(langName) {
+      const li =  document.createElement('li');
+      li.innerHTML = `${langName}`
+      document.querySelector('.language').
+      appendChild(li)
+    }   
+    addLang("c++")
+    addLang("Java")
+
+
+    function addLanguage (langName){
+        const li = document.createElement('li')
+        li.appendChild(document.createTextNode(langName))
+        document.querySelector('.language').appendChild(li)
+    }
+    addLanguage("Golang")
+
+    const secondLang = document.querySelector('li:nth-child(2)')
+    const newli = document.createElement('li')
+    newli.textContent = "Gojo"
+    secondLang.replaceWith(newli)
+
+    const addMain = document.querySelector('li:last-child')
+    addMain.remove()
+
+
+
+</script>
+</html>
