@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="main">Chai code</h1>
+    <button>stop</button>
+</body>
+<script>
+    //  let main = function(){
+    //     document.querySelector('h1')
+    //     .innerHTML = "best js"
+    //  }
+
+    //  let real =  setTimeout(main,3000 );
+     let main = function(){
+        document.querySelector('h1')
+        .innerHTML = "best js"
+     }
+
+     let real =  setTimeout(main,3000 );
+
+
+
+     let stopped = document.querySelector('button').addEventListener('click', function(){
+        clearTimeout(real)
+     })
+
+    
+           
+    
+     
+     
+
+</script>
+</html>
+
+
+<!-- 
+LEVEL 1: setTimeout (Basics)
+✅ Task 1: Delayed Message
+
+Goal: Print "Hello after 3 seconds" after 3 seconds.
+
+Hint:
+
+Use setTimeout
+
+Time is in milliseconds -->
+
+
+<!-- ✅ Task 2: Button Alert
+
+Goal:
+When a button is clicked, show an alert after 2 seconds. -->
