@@ -47,3 +47,9 @@ console.log(playlistLength);
 let sports = ["cricket", "football", "tennis", "hockey", "basketball"];
 let hasBasketball = sports.indexOf("basketball");
 console.log(hasBasketball);
+
+let mainArray = ["mohit","rahul","vikas"];
+let solidArray = ["sumit"];
+let combineArray = [...mainArray, ...solidArray]
+
+console.log(combineArray);
