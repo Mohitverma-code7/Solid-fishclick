@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Color Generator</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI",sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:0.4s;
+
+
+background-image:url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
+background-size:cover;
+background-position:center;
+}
+
+.container{
+
+width:420px;
+padding:40px;
+border-radius:25px;
+
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(15px);
+
+box-shadow:
+0 10px 30px rgba(0,0,0,0.4),
+inset 0 0 10px rgba(255,255,255,0.1);
+
+text-align:center;
+
+}
+
+h1{
+color:white;
+font-size:28px;
+margin-bottom:25px;
+}
+
+#colorCode{
+
+font-size:24px;
+font-weight:bold;
+color:white;
+
+background:rgba(0,0,0,0.3);
+padding:12px;
+border-radius:10px;
+
+margin-bottom:25px;
+
+letter-spacing:1px;
+
+}
+
+button{
+
+padding:12px 22px;
+margin:8px;
+
+border:none;
+border-radius:30px;
+
+font-size:15px;
+font-weight:600;
+
+cursor:pointer;
+
+background:white;
+color:#333;
+
+transition:all 0.25s ease;
+
+}
+
+button:hover{
+
+transform:translateY(-3px) scale(1.05);
+box-shadow:0 8px 15px rgba(0,0,0,0.3);
+
+}
+
+.controls{
+margin-top:15px;
+}
+
+select{
+
+padding:10px 14px;
+
+border-radius:10px;
+border:none;
+
+margin:6px;
+
+font-size:14px;
+
+background:white;
+
+}
+
+label{
+color:white;
+font-size:14px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎨 Random Color Generator</h1>
+
+<div id="colorCode">#ffffff</div>
+
+<button id="button">Generate Color</button>
+<button id="copy">Copy Color</button>
+
+<div class="controls">
+
+<label>Format</label>
+<select id="colorSelect">
+<option value="HEX">HEX</option>
+<option value="RGB">RGB</option>
+</select>
+
+<label>Theme</label>
+<select id="themeSelect">
+<option value="dark">Dark</option>
+<option value="light">Light</option>
+</select>
+
+</div>
+
+</div>
+
+<script>
+
+const button = document.getElementById("button");
+const colorCode = document.getElementById("colorCode");
+const copyBtn = document.getElementById("copy");
+const colorSelect = document.getElementById("colorSelect");
+const themeSelect = document.getElementById("themeSelect");
+
+function getRGBValues(){
+
+let r,g,b;
+
+if(themeSelect.value === "light"){
+r = Math.floor(Math.random()*100)+150;
+g = Math.floor(Math.random()*100)+150;
+b = Math.floor(Math.random()*100)+150;
+}else{
+r = Math.floor(Math.random()*120);
+g = Math.floor(Math.random()*120);
+b = Math.floor(Math.random()*120);
+}
+
+return {r,g,b};
+
+}
+
+function generateHEX(){
+
+const {r,g,b} = getRGBValues();
+
+return "#" + ((1<<24)+(r<<16)+(g<<8)+b)
+.toString(16)
+.slice(1);
+
+}
+
+function generateRGB(){
+
+const {r,g,b} = getRGBValues();
+
+return `rgb(${r}, ${g}, ${b})`;
+
+}
+
+button.addEventListener("click",()=>{
+
+let color;
+
+if(colorSelect.value === "HEX"){
+color = generateHEX();
+}else{
+color = generateRGB();
+}
+
+
+document.body.style.backgroundImage = "none";
+
+
+document.body.style.backgroundColor = color;
+
+colorCode.textContent = color;
+
+});
+
+copyBtn.addEventListener("click",()=>{
+
+navigator.clipboard.writeText(colorCode.textContent);
+
+copyBtn.textContent="Copied!";
+
+setTimeout(()=>{
+copyBtn.textContent="Copy Color";
+},1000);
+
+});
+
+</script>
+
+</body>
+</html>
