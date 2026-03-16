@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Digital Clock</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: "Segoe UI", sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(-45deg,#1f4037,#99f2c8,#4facfe,#00f2fe);
+background-size:400% 400%;
+animation:bgMove 12s infinite linear;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+.clock-card{
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(12px);
+padding:40px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 10px 40px rgba(0,0,0,0.25);
+color:white;
+width:320px;
+}
+
+.title{
+font-size:18px;
+letter-spacing:3px;
+margin-bottom:15px;
+opacity:0.8;
+}
+
+
+
+#clock{
+font-size:55px;
+letter-spacing:3px;
+font-weight:600;
+margin-bottom:10px;
+}
+
+
+#date{
+font-size:16px;
+opacity:0.8;
+margin-bottom:20px;
+}
+
+
+
+button{
+border:none;
+padding:10px 18px;
+border-radius:10px;
+background:white;
+color:#333;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="clock-card">
+
+<div class="title">DIGITAL CLOCK</div>
+
+<div id="clock">00:00:00</div>
+
+<div id="date">Loading date...</div>
+
+<button id="toggleFormat">Switch to 12h</button>
+
+</div>
+
+<script>
+
+const clock = document.getElementById("clock")
+const date = document.getElementById("date")
+const toggleBtn = document.getElementById("toggleFormat")
+
+let is24Hour = true
+
+function updateClock(){
+
+const now = new Date()
+
+let hours = now.getHours()
+let minutes = now.getMinutes()
+let seconds = now.getSeconds()
+
+let ampm = ""
+
+if(!is24Hour){
+ampm = hours >= 12 ? " PM" : " AM"
+hours = hours % 12
+hours = hours ? hours : 12
+}
+
+hours = String(hours).padStart(2,"0")
+minutes = String(minutes).padStart(2,"0")
+seconds = String(seconds).padStart(2,"0")
+
+clock.textContent = `${hours}:${minutes}:${seconds}${ampm}`
+
+const options = { weekday:"long", year:"numeric", month:"long", day:"numeric" }
+date.textContent = now.toLocaleDateString(undefined, options)
+
+}
+
+toggleBtn.addEventListener("click",()=>{
+
+is24Hour = !is24Hour
+
+toggleBtn.textContent = is24Hour ? "Switch to 12h" : "Switch to 24h"
+
+})
+
+setInterval(updateClock,1000)
+
+updateClock()
+
+</script>
+
+</body>
+</html>
